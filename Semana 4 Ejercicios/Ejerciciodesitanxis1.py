@@ -1,0 +1,7 @@
+print("Hola" + "Mundo")
+print("Hola" + 2)
+print(2 + "Hola")
+print([1, 2, 3] + [4, 5, 6])
+print("Mundo" + [1, 2, 3])
+print(3.14 + 5.60)
+print(True + False)
