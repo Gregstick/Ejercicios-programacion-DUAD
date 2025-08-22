@@ -1,0 +1,40 @@
+1. Cree un pseudocódigo que le pida un `tiempo en segundos` al usuario y calcule si es menor o mayor a 10 minutos. Si es menor, muestre cuantos segundos faltarían para llegar a 10 minutos. Si es mayor, muestre “*Mayor*”. Si es exactamente igual, muestre “*Igual*”.
+    1. *Ejemplos*:
+        1. 1040 → Mayor
+        2. 140 → 460
+        3. 600 → Igual
+        4. 599 → 1
+
+1. Inicio
+
+2. Definir `tiempo_en_segundos`
+
+3. Definir `diez_minutos` —> 600s
+
+4. Definir `faltan` 
+
+5. Mostrar “Ingrese tiempo en segundos”
+
+6. Pedir `tiempo_en_segundos`
+
+7. Si (`tiempo_en_segundos` < 600) entonces:
+
+a. `faltan` = `diez_minutos` - `tiempo_en_segundos`
+
+  i. Mostrar “Faltarían” `faltan` “segundos para llegar a 10 minutos”
+
+b. Sino:
+
+ii. Si (`tiempo_en_segundos` > 600) entonces:
+
+iii. Mostrar “Mayor”
+
+c. Sino:
+
+iv. Si (`tiempo_en_segundos` = 600) entonces:
+
+v. Mostrar “Igual”
+
+8. FinSi
+
+9.  Fin

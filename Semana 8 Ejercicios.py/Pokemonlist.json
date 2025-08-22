@@ -1,0 +1,66 @@
+[
+    {
+        "base": {
+            "Attack": 55,
+            "Defense": 40,
+            "HP": 35,
+            "Sp. Attack": 50,
+            "Sp. Defense": 50,
+            "Speed": 90
+        },
+        "name": {
+            "english": "Pikachu"
+        },
+        "type": [
+            "Electric"
+        ]
+    },
+    {
+        "base": {
+            "Attack": 52,
+            "Defense": 43,
+            "HP": 39,
+            "Sp. Attack": 60,
+            "Sp. Defense": 50,
+            "Speed": 65
+        },
+        "name": {
+            "english": "Charmander"
+        },
+        "type": [
+            "Fire"
+        ]
+    },
+    {
+        "base": {
+            "Attack": 48,
+            "Defense": 65,
+            "HP": 44,
+            "Sp. Attack": 50,
+            "Sp. Defense": 64,
+            "Speed": 43
+        },
+        "name": {
+            "english": "Squirtle"
+        },
+        "type": [
+            "Water"
+        ]
+    },
+    {
+        "base": {
+            "Attack": 70,
+            "Defense": 50,
+            "HP": 80,
+            "Sp. Attack": 90,
+            "Sp. Defense": 45,
+            "Speed": 88
+        },
+        "name": {
+            "english": "Charizard"
+        },
+        "type": [
+            "Fuego"
+        ]
+    }
+]

@@ -1,0 +1,37 @@
+1. Cree un algoritmo que describa su rutina diaria. Use condiciones, condiciones múltiples y ciclos.
+
+1. Inicio
+
+2. Levantarme
+
+3. Buscar computadora de trabajo
+
+4. Si tiene carga:
+
+i. Encender computadora
+
+Sino: 
+
+ii. Conectar el cargador
+
+iii. Encender la computadora
+
+5. Abrir los programas de trabajo
+
+6. Mientras no se termine con una cuenta:
+
+i. Si se puede trabajar la cuenta: 
+
+a. entonces terminarla.
+
+ii. Sino: 
+
+b. Pedir ayuda y terminar la cuenta.
+
+7. Revisar si tengo pendientes o si ya terminé.
+
+8. Cerrar los programas de trabajo.
+
+9. Apagar la computadora.
+
+10. FIN
