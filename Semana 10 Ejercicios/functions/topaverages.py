@@ -19,9 +19,8 @@ def average_grades(students_list):
 
 def top_3_averages():
     promedios = average_grades(amount_of_students)
-    if not promedios:          # si aún no hay estudiantes
+    if not promedios:         
         return []
-    # Ordena la LISTA completa por 'Promedio' (no cada diccionario por separado)
     promedios_ordenados = sorted(promedios, key=lambda x: x["Promedio"], reverse=True)
     return promedios_ordenados[:3]
 

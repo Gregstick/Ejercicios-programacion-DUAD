@@ -24,7 +24,6 @@ def menu():
                     print("Primero ingresa estudiantes.\n")
                 else:
                     print("\nTOP 3 por promedio:")
-                    # Versión SIN enumerate (como pediste):
                     i = 1
                     for item in top:
                         print(f"{i}. {item['Nombre']} → {item['Promedio']:.2f}")
