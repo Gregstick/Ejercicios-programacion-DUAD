@@ -1,9 +1,8 @@
-from .students import students, amount_of_students
-from .allstudents import total_entered_students
-from .topaverages import top_3_averages, average_grades, sum_all_averages
+from .students import students, total_entered_students, top_3_average, average_grades, sum_all_averages
 from .exportfilecsv import write_csv_file, read_csv_file, header
 
 def menu():
+        student_list = []
         while True:
             print(
                 " 1. Ingresar Estudiante\n",
@@ -15,11 +14,12 @@ def menu():
             )
             option = int(input("Ingrese el número de la opción que quiere ejecutar: "))
             if option == 1:
-                return students()
+                new_students = students()
+                student_list.extend(new_students)
             elif option == 2:
-                return total_entered_students()
+                total_entered_students(student_list)
             elif option == 3:
-                top = top_3_averages()
+                top = top_3_average(student_list)
                 if not top:
                     print("Primero ingresa estudiantes.\n")
                 else:
@@ -30,10 +30,12 @@ def menu():
                         i += 1
                     print()
             elif option == 4:
-                total = sum_all_averages(amount_of_students)
+                total = sum_all_averages(student_list)
                 print(f"Este es la suma total de todos los promedios: {total}")
             elif option == 5:
-                write_csv_file("students.csv", amount_of_students, header)
+                write_csv_file("students.csv", student_list, header)
                 print("Archivo CSV exportado correctamente")
             elif option == 6:
-                read_csv_file("students.csv")
+                charged = read_csv_file("students.csv")
+                if charged:
+                    student_list = charged
