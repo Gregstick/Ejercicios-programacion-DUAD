@@ -25,13 +25,11 @@ class Leg():
         self.foot = 1
 
 class Feet():
-    def __init__(self, leg):
-        self.leg = leg
+    def __init__(self):
+        self.toes = 5
 
 class Human():
     def __init__(self):
-        self.head = Head()
-        self.torso = Torso(self.head, self.right_arm, self.left_arm, self.right_leg, self.left_leg)
         self.right_hand = Hand()
         self.left_hand = Hand()
         self.right_arm = Arm(self.right_hand)
@@ -40,7 +38,8 @@ class Human():
         self.left_foot = Feet()
         self.right_leg = Leg(self.right_foot)
         self.left_leg = Leg(self.left_foot)
-
+        self.head = Head()
+        self.torso = Torso(self.head, self.right_arm, self.left_arm, self.right_leg, self.left_leg)
 
 
 right_hand = Hand()
