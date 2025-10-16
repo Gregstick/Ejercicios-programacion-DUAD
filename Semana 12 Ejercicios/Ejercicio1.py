@@ -1,5 +1,6 @@
 class BankAccount():
-    balance = 0
+    def __init__(self):
+        self.balance = 0
 
     def add_balance(self, amount):
         self.balance += amount
@@ -10,6 +11,7 @@ class BankAccount():
 
 class SavingsAccount(BankAccount):
     def __init__(self, min_balance):
+        self.balance = 0
         self.min_balance = min_balance
 
     def amount_to_withdraw(self, amount):
