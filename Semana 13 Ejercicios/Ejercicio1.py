@@ -1,8 +1,7 @@
 def print_parameter(func):
-    def wrapper(*args, **kwargs):
-        self = args[0]
+    def wrapper(self, *args, **kwargs):
         print(f"Mi nombre es: {self.name}, y tengo: {self.age} años de edad")
-        result = func(*args, **kwargs)
+        result = func(self, *args, **kwargs)
         return result
     return wrapper
 

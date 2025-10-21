@@ -1,13 +1,12 @@
 def verification_decorator(func):
-    def wrapper(*args, **kwargs):
-        self = args[0]
+    def wrapper(self, *args, **kwargs):
         for number in (self.number1, self.number2):
             if not isinstance(number, (int, float)):
                 print(
                     "Este no es un número, por favor ingresa un valor válido"
                 )
                 return
-        return func(*args, **kwargs)
+        return func(self, *args, **kwargs)
     return wrapper
 
 
