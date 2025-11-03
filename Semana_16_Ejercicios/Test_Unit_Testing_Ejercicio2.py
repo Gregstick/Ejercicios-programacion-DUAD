@@ -36,7 +36,7 @@ def test_string_hola_mundo():
     # Assert
     assert texto in resultado
     assert "odnum aloH" in resultado
-    assert "--->" in resultado  # usa el mismo separador que tu función
+    assert "--->" in resultado  
 
 def test_string_un_caracter():
     # Arrange
@@ -94,7 +94,7 @@ def test_separated_string_orden_lista_larga(capsys):
     # Act
     separated_string(texto)
     salida = capsys.readouterr().out.strip()
-    # Assert (igual que tu salida real con espacios)
+    # Assert
     assert salida == "computadora - funcion - monitor - python - variable"
 
 def test_separated_string_lista_corta(capsys):
