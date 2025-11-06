@@ -1,0 +1,7 @@
+Categoria,Movimiento,Monto
+Trabajo,__CATEGORIA__,
+Trabajo,Ingreso,8000.00
+Videogame,__CATEGORIA__,
+Videogame,Gasto,-38000.00
+Ventas,__CATEGORIA__,
+Ventas,Ingreso,80000.00
