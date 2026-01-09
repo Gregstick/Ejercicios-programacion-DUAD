@@ -9,9 +9,11 @@ VALID_STATES = ["Por Hacer", "En Progreso", "Completada"]
 
 
 def read_tasks():
-    with open(FILE_PATH, "r") as file:
-        return json.load(file)
-
+    try:
+        with open(FILE_PATH, "r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
 
 def write_tasks(tasks):
     with open(FILE_PATH, "w") as file:
@@ -25,7 +27,8 @@ def get_tasks():
         estado = request.args.get("estado")
 
         if estado:
-            tasks = [task for task in tasks if task["estado"] == estado]
+            estado = estado.lower()
+            tasks = [task for task in tasks if task["estado"].lower() == estado]
 
         return jsonify(tasks), 200
 
@@ -36,26 +39,21 @@ def get_tasks():
 @app.route("/tasks", methods=["POST"])
 def create_task():
     try:
-        raw_data = request.data.decode("utf-8")
+        data = request.get_json()
 
-        if not raw_data:
-            raise ValueError("request body is empty")
-
-        try:
-            data = json.loads(raw_data)
-        except json.JSONDecodeError:
+        if data is None:
             raise ValueError("request body must be valid JSON")
 
         tasks = read_tasks()
 
         if "id" not in data:
             raise ValueError("id is required")
-        if "titulo" not in data:
+        if "titulo" not in data or not data["titulo"].strip():
             raise ValueError("title is required")
-        if "descripcion" not in data:
+        if "descripcion" not in data or not data["descripcion"].strip():
             raise ValueError("description is required")
-        if "estado" not in data:
-            raise ValueError("state is required")
+        if "estado" not in data or not data["estado"].strip():
+            raise ValueError("estate is required")
         if data["estado"] not in VALID_STATES:
             raise ValueError("invalid state")
 
@@ -69,7 +67,7 @@ def create_task():
         return jsonify(data), 201
 
     except ValueError as ex:
-        return jsonify(error=str(ex)), 400
+        return jsonify(error=str(ex)), 404
 
     except Exception as ex:
         return jsonify(error=str(ex)), 500
@@ -79,14 +77,9 @@ def create_task():
 @app.route("/tasks/<int:task_id>", methods=["PUT"])
 def update_task(task_id):
     try:
-        raw_data = request.data.decode("utf-8")
+        data = request.get_json()
 
-        if not raw_data:
-            raise ValueError("request body is empty")
-
-        try:
-            data = json.loads(raw_data)
-        except json.JSONDecodeError:
+        if data is None:
             raise ValueError("request body must be valid JSON")
 
         tasks = read_tasks()
@@ -108,7 +101,7 @@ def update_task(task_id):
         raise ValueError("task not found")
 
     except ValueError as ex:
-        return jsonify(error=str(ex)), 400
+        return jsonify(error=str(ex)), 404
 
     except Exception as ex:
         return jsonify(error=str(ex)), 500
@@ -127,7 +120,7 @@ def delete_task(task_id):
         return jsonify(message="task deleted"), 200
 
     except ValueError as ex:
-        return jsonify(error=str(ex)), 400
+        return jsonify(error=str(ex)), 404
 
     except Exception as ex:
         return jsonify(error=str(ex)), 500
