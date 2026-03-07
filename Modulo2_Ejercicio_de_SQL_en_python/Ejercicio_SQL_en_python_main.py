@@ -15,7 +15,7 @@ def health():
     return jsonify(message="API running"), 200
 
 
-@app.route("/add", methods=["POST"])
+@app.route("/users", methods=["POST"])
 def add_new_user():
     try:
         data = request.get_json()
@@ -48,7 +48,7 @@ def add_new_user():
 
 
 
-@app.route("/add_car", methods=["POST"])
+@app.route("/cars", methods=["POST"])
 def add_car():
     try:
         data = request.get_json()
@@ -76,7 +76,7 @@ def add_car():
         return jsonify(error=str(ex)), 500
 
 
-@app.route("/add_rental", methods=["POST"])
+@app.route("/rentals", methods=["POST"])
 def add_rental():
     try:
         data = request.get_json()
@@ -90,6 +90,12 @@ def add_rental():
             raise ValueError("Cars Id is required")
         if "rent_status" not in data or not data["rent_status"]:
             raise ValueError("Rent status is required")
+        
+        if not db_manager.user_exists(data["users_id"]):
+            raise ValueError("User does not exist")
+
+        if not db_manager.car_exists(data["cars_id"]):
+            raise ValueError("Car does not exist")
         
         db_manager.add_rental(data)
 
@@ -251,7 +257,7 @@ def get_cars():
     return jsonify(cars), 200
 
 
-@app.route("/rents", methods=["GET"])
+@app.route("/rentals", methods=["GET"])
 def get_rents():
 
     filters = request.args.to_dict()

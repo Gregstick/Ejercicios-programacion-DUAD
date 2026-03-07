@@ -42,16 +42,14 @@ class PgManager():
         print("Connection closed")
 
 
-    def execute_query(self, query, *args):
-        self.cursor.execute(query, args)
-        result = self.cursor.fetchall()
-        self.connection.commit()
+    def execute_query(self, query, params=None):
+        self.cursor.execute(query, params)
 
         if self.cursor.description:
-            results = self.cursor.fetchall()
-            return results
-        
-        return result
+            return self.cursor.fetchall()
+
+        self.connection.commit()
+        return None
 
 
     def add_user(self, add_user):
