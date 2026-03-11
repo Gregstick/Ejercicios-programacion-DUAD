@@ -64,8 +64,7 @@ class PgManager():
             add_user["account_status"]
         )
     
-        self.cursor.execute(query, values)
-        self.connection.commit()
+        self.execute_query(query, values)
 
 
     def add_car(self, add_car):
@@ -78,8 +77,8 @@ class PgManager():
             add_car["car_status"]
         )
 
-        self.cursor.execute(query, values)
-        self.connection.commit()
+        self.execute_query(query, values)
+
 
 
     def add_rental(self, add_rental):
@@ -91,8 +90,8 @@ class PgManager():
             add_rental["rent_status"]
         )
 
-        self.cursor.execute(query, values)
-        self.connection.commit()
+        self.execute_query(query, values)
+
 
 
     def change_car_status(self, car_id, new_status):
@@ -102,8 +101,8 @@ class PgManager():
             WHERE id = %s
         """
 
-        self.cursor.execute(query, (new_status, car_id))
-        self.connection.commit()
+        self.execute_query(query, (new_status, car_id))
+
 
 
     def change_user_status(self, user_id, new_status):
@@ -113,8 +112,8 @@ class PgManager():
             WHERE id = %s
         """
 
-        self.cursor.execute(query, (new_status, user_id))
-        self.connection.commit()
+        self.execute_query(query, (new_status, user_id))
+
 
 
     def complete_rental(self, rent_id):
@@ -150,8 +149,8 @@ class PgManager():
             WHERE id = %s
     """
 
-        self.cursor.execute(change_rent_status_query, (new_status, rent_id))
-        self.connection.commit()
+        self.execute_query(change_rent_status_query, (new_status, rent_id))
+
 
     def flag_user_as_delinquent(self, user_id):
         flag_user_query = """
@@ -160,8 +159,7 @@ class PgManager():
             WHERE id = %s
     """
 
-        self.cursor.execute(flag_user_query, (user_id,))
-        self.connection.commit()
+        self.execute_query(flag_user_query, (user_id,))
 
 
     def list_users(self, filters=None):
@@ -213,3 +211,20 @@ class PgManager():
 
         self.cursor.execute(base_query, tuple(params))
         return self.cursor.fetchall()
+
+    def user_exists(self, user_id):
+        query = "SELECT id FROM lyfter_car_rental.users WHERE id = %s"
+        self.cursor.execute(query, (user_id,))
+        return self.cursor.fetchone() is not None
+
+
+    def car_exists(self, car_id):
+        query = "SELECT id FROM lyfter_car_rental.cars WHERE id = %s"
+        self.cursor.execute(query, (car_id,))
+        return self.cursor.fetchone() is not None
+
+
+    def rental_exists(self, rental_id):
+        query = "SELECT id FROM lyfter_car_rental.cars_rented WHERE id = %s"
+        self.cursor.execute(query, (rental_id,))
+        return self.cursor.fetchone() is not None
