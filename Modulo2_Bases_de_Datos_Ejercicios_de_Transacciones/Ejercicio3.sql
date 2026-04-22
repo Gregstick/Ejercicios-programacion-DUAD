@@ -13,14 +13,17 @@ BEGIN
         RAISE EXCEPTION 'La factura no existe';
     END IF;
 
-    SELECT product_id, quantity INTO v_product_id, v_quantity
+FOR product_id, quantity IN 
+    SELECT v_product_id, v_quantity
     FROM invoice_items
     WHERE invoice_id = 'F001'
-    LIMIT 1;
+LOOP
 
     UPDATE products
     SET stock = stock + v_quantity
     WHERE product_id = v_product_id;
+
+END LOOP;
 
     UPDATE invoices
     SET status = 'RETURNED'
@@ -31,4 +34,5 @@ BEGIN
 EXCEPTION
     WHEN OTHERS THEN
         RAISE NOTICE 'Error en el retorno';
+        RAISE;
 END $$;

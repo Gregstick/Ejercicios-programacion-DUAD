@@ -7,7 +7,7 @@ CREATE TABLE products (
     product_id VARCHAR(50) PRIMARY KEY,
     name VARCHAR(100),
     stock INTEGER,
-    price INTEGER
+    price DECIMAL(10, 2)
 );
 
 CREATE TABLE invoices (
@@ -22,6 +22,6 @@ CREATE TABLE invoice_items (
     invoice_id VARCHAR(50) REFERENCES invoices(invoice_id),
     product_id VARCHAR(50) REFERENCES products(product_id),
     quantity INTEGER,
-    subtotal INTEGER
+    subtotal DECIMAL(10, 2)
 );
 

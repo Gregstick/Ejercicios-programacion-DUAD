@@ -1,6 +1,6 @@
 DO $$
 DECLARE
-    stock INTEGER;
+    v_stock INTEGER;
     user_exist INTEGER;
     price INTEGER;
     quantity INTEGER := 1;
@@ -37,5 +37,6 @@ BEGIN
 EXCEPTION
     WHEN OTHERS THEN
         RAISE NOTICE 'Error en la compra';
+        RAISE;
 END $$;
 
