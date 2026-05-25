@@ -1,13 +1,13 @@
 from db import engine
 from Ejercicio_2_db import Base
-from Ejercicio3 import UserService, CarService, AddressService
+from Ejercicio4 import UserService, CarsService, AddressService
 
 def main():
     Base.metadata.create_all(engine)
     print("Tablas listas")
 
     user_service = UserService()
-    car_service = CarService()
+    car_service = CarsService()
     address_service = AddressService()
 
     user = user_service.create("Greg")
@@ -18,9 +18,9 @@ def main():
 
     car_service.associate_user(car.id, user.id)
 
-    print(user_service.obtener_todos())
-    print(car_service.obtener_todos())
-    print(address_service.obtener_todos())
+    print(user_service.get_all())
+    print(car_service.get_all_cars())
+    print(address_service.get_all_addresses())
 
 
 if __name__ == "__main__":

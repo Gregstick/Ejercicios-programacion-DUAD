@@ -1,32 +1,32 @@
 from db import session
-from Ejercicio_2_db import Users, Cars, Address
+from Ejercicio_2_db import User, Cars, Address
 
 class UserService:
     def create(self, name):
-        user = Users(name=name)
+        user = User(name=name)
         session.add(user)
         session.commit()
         return user
 
     def modify(self, id, new_name):
-        user = session.get(Users, id)
+        user = session.get(User, id)
         if user:
             user.name = new_name
             session.commit()
 
     def delete(self, id):
-        user = session.get(Users, id)
+        user = session.get(User, id)
         if user:
             session.delete(user)
             session.commit()
 
     def get_all(self):
-        return session.query(Users).all()
+        return session.query(User).all()
 
 
 class CarsService:
-    def create_car(self, make, users_id=None):
-        car = Cars(make=make, users_id=users_id)
+    def create_car(self, make, user_id=None):
+        car = Cars(make=make, user_id=user_id)
         session.add(car)
         session.commit()
         return car
